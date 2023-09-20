@@ -1,61 +1,48 @@
-//Task 2 Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
-//6 -> да
-//7 -> да
-//1 -> нет
+﻿int size = ReadInt("Введите размерность массива: ");
+int min = ReadInt("Введите минимальное число массива: ");
+int max = ReadInt("Введите максимальное число массива: ");
+int [] numbers = new int[size];
 
-Console.Write("Enter a week day: ");
-string StrNum = Console.ReadLine();
-int day = int.Parse(StrNum);
+FillArrayRandomNumbers(numbers);
+PrintArray(numbers);
 
-if(day > 7)
+int maxFillarray = numbers[0];
+int minFillarray = numbers[0];
+
+for (int i = 0; i < numbers.Length; i++)
 {
-    Console.WriteLine("Not a week day");
-}
-
-else if(day == 6 | day ==7)
-{
-    Console.WriteLine("Vacation");
-}
-else
-{
-    System.Console.WriteLine("Working");
-}
-
-
-//Напишите программу, которая принимает на вход трёхзначное число и на выходе показывает вторую цифру этого числа.
-//456 -> 5
-//782 -> 8
-//918 -> 1
-
-Console.Write("Enter a number: ");
-string StrNum = Console.ReadLine();
-int num = int.Parse(StrNum);
-
-if (num < 100 &&  num > 999)
-{
-    System.Console.WriteLine("num is encorrect");
+    if (numbers[i] > maxFillarray)
+    {
+        maxFillarray = numbers[i];
     }
-else
+    if (numbers[i] < minFillarray)
+    {
+        minFillarray = numbers[i];
+    }
+}
+Console.WriteLine($"Разница между максимальным и минимальным числом = {maxFillarray - minFillarray}");
+
+
+// Методы
+void FillArrayRandomNumbers(int [] array) //Заполнение массива
 {
-    int num1 = (num % 100) / 10;
-    System.Console.WriteLine(num1);    
+    for (int i = 0; i < array.Length; i++)
+    {
+        array[i] = new Random().Next(min, max);
+    }
 }
 
-//Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
-//645 -> 5
-//78 -> третьей цифры нет
-//32679 -> 6
-
-Console.Write("Enter a number: ");
-string StrNum = Console.ReadLine();
-int num = int.Parse(StrNum);
-
-if (num < 100)
+void PrintArray(int[] array) //Вывод массива на экран
 {
-    System.Console.WriteLine("Third num is out");
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.Write(array[i] + " ");
     }
-else
+    Console.WriteLine();
+}
+
+int ReadInt(string message)  //Функция ввода
 {
-    int num1 = (num / 10) % 10;
-    System.Console.WriteLine(num1);    
+    Console.Write(message);
+    return Convert.ToInt32(Console.ReadLine());
 }
