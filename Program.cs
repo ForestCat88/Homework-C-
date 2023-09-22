@@ -1,61 +1,27 @@
-//Task 2 Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
-//6 -> да
-//7 -> да
-//1 -> нет
+﻿Console.WriteLine($"Cколько чисел больше 0 ввёл пользователь \n");
+Console.Write($"Введи число М(количество чисел): ");
+int m = Convert.ToInt32(Console.ReadLine());
+int[] massiveNumbers = new int[m];
 
-Console.Write("Enter a week day: ");
-string StrNum = Console.ReadLine();
-int day = int.Parse(StrNum);
-
-if(day > 7)
-{
-    Console.WriteLine("Not a week day");
-}
-
-else if(day == 6 | day ==7)
-{
-    Console.WriteLine("Vacation");
-}
-else
-{
-    System.Console.WriteLine("Working");
+void InputNumbers(int m){
+for (int i = 0; i < m; i++)
+  {
+    Console.Write($"Введи {i+1} число: ");
+    massiveNumbers[i] = Convert.ToInt32(Console.ReadLine());
+  }
 }
 
 
-//Напишите программу, которая принимает на вход трёхзначное число и на выходе показывает вторую цифру этого числа.
-//456 -> 5
-//782 -> 8
-//918 -> 1
-
-Console.Write("Enter a number: ");
-string StrNum = Console.ReadLine();
-int num = int.Parse(StrNum);
-
-if (num < 100 &&  num > 999)
+int Comparison(int[] massiveNumbers)
 {
-    System.Console.WriteLine("num is encorrect");
-    }
-else
-{
-    int num1 = (num % 100) / 10;
-    System.Console.WriteLine(num1);    
+  int count = 0;
+  for (int i = 0; i < massiveNumbers.Length; i++)
+  {
+    if(massiveNumbers[i] > 0 ) count += 1; 
+  }
+  return count;
 }
 
-//Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
-//645 -> 5
-//78 -> третьей цифры нет
-//32679 -> 6
+InputNumbers(m);
 
-Console.Write("Enter a number: ");
-string StrNum = Console.ReadLine();
-int num = int.Parse(StrNum);
-
-if (num < 100)
-{
-    System.Console.WriteLine("Third num is out");
-    }
-else
-{
-    int num1 = (num / 10) % 10;
-    System.Console.WriteLine(num1);    
-}
+Console.WriteLine($"Введено чисел больше 0: {Comparison(massiveNumbers)} ");
